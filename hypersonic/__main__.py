@@ -5,7 +5,7 @@ import os
 
 from .display import Display
 from .model import Game
-from .entities import ExecutableAgent, AspAgent
+from .entities import ExecutableAgent, AspAgent, Bombardino
 
 
 active_agents = ['randomASP', 'randomPY']
@@ -32,12 +32,12 @@ AGENTS = {
                             if 'leo_sal' in active_agents else (0, 0),
                             asp_programs=[],
                             name="leo_sal"),
-    'gameStoppers': AspAgent(agent_id=active_agents.index('gameStoppers')
-                                if 'gameStoppers' in active_agents else 0,
-                                start_cell=Game.START_POSITIONS[active_agents.index('gameStoppers')]
-                                if 'gameStoppers' in active_agents else (0, 0),
-                                asp_programs=[],
-                                name="gameStoppers"),
+    'gameStopppers': Bombardino(agent_id=active_agents.index('gameStopppers')
+                                if 'gameStopppers' in active_agents else 0,
+                                start_cell=Game.START_POSITIONS[active_agents.index('gameStopppers')]
+                                if 'gameStopppers' in active_agents else (0, 0),
+                                asp_programs=[os.path.join("encodings", "gameStopppers.lp")],
+                                name="gameStopppers"),
     'randomASP': AspAgent(agent_id=active_agents.index('randomASP')
                             if 'randomASP' in active_agents else 0,
                             start_cell=Game.START_POSITIONS[active_agents.index('randomASP')]
